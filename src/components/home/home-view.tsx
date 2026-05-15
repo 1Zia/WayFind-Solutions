@@ -5,17 +5,27 @@ import Link from "next/link";
 import Image from "next/image";
 import * as Icons from "lucide-react";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { company } from "@/lib/company";
 import { SERVICES } from "@/content/services";
 import { INDUSTRIES } from "@/content/industries";
 import { PROJECTS } from "@/content/portfolio";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { IndustryVideoTile } from "@/components/home/industry-video-tile";
 import { AiChatWidget } from "@/components/home/ai-chat-widget";
-import { HERO_BG_VIDEO_SRC } from "@/lib/industry-videos";
 
 const trustItems = [
   "Healthcare",
@@ -106,12 +116,17 @@ function useCounter(target: number, enabled: boolean) {
   return v;
 }
 
-
 const WorkDragRow = React.memo(function WorkDragRow() {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const sx = useSpring(useTransform(mx, [-300, 300], [18, -18]), { stiffness: 120, damping: 20 });
-  const sy = useSpring(useTransform(my, [-300, 300], [12, -12]), { stiffness: 120, damping: 20 });
+  const sx = useSpring(useTransform(mx, [-300, 300], [18, -18]), {
+    stiffness: 120,
+    damping: 20,
+  });
+  const sy = useSpring(useTransform(my, [-300, 300], [12, -12]), {
+    stiffness: 120,
+    damping: 20,
+  });
 
   return (
     <div className="relative cursor-grab active:cursor-grabbing">
@@ -123,10 +138,15 @@ const WorkDragRow = React.memo(function WorkDragRow() {
       >
         {PROJECTS.map((p) => (
           <Card key={p.slug} className="min-w-[300px] p-6 shadow-elevated">
-            <div className="text-xs font-semibold text-muted uppercase tracking-wider">{p.industry}</div>
+            <div className="text-xs font-semibold text-muted uppercase tracking-wider">
+              {p.industry}
+            </div>
             <div className="mt-2 text-xl font-semibold">{p.name}</div>
             <div className="mt-2 text-sm text-muted">{p.result}</div>
-            <Link className="mt-4 inline-flex text-sm font-semibold text-accent hover:underline" href={`/work/${p.slug}`}>
+            <Link
+              className="mt-4 inline-flex text-sm font-semibold text-accent hover:underline"
+              href={`/work/${p.slug}`}
+            >
               View Case Study →
             </Link>
           </Card>
@@ -143,8 +163,10 @@ export function HomeView() {
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const sx = useSpring(useTransform(mx, [-300, 300], [18, -18]), { stiffness: 120, damping: 20 });
-  const sy = useSpring(useTransform(my, [-300, 300], [12, -12]), { stiffness: 120, damping: 20 });
+  const sx = useSpring(useTransform(mx, [-300, 300], [18, -18]), {
+    stiffness: 120,
+    damping: 20,
+  });
 
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
@@ -202,16 +224,23 @@ export function HomeView() {
               hidden: { opacity: 0 },
               show: {
                 opacity: 1,
-                transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-              }
+                transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+              },
             }}
           >
             {headline.map((w, i) => (
-              <span key={`${w}-${i}`} className="inline-block overflow-hidden pb-1 pr-4">
+              <span
+                key={`${w}-${i}`}
+                className="inline-block overflow-hidden pb-1 pr-4"
+              >
                 <motion.span
                   variants={{
                     hidden: { y: "100%", opacity: 0 },
-                    show: { y: 0, opacity: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+                    show: {
+                      y: 0,
+                      opacity: 1,
+                      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+                    },
                   }}
                   className="inline-block"
                 >
@@ -227,8 +256,9 @@ export function HomeView() {
             transition={{ delay: 0.25 }}
             className="mt-5 max-w-2xl text-pretty text-base text-muted sm:text-lg"
           >
-            WayFind is a small senior team in Islamabad: websites, mobile apps, AI assistants, CRM, SEO, and paid ads,
-            wired up so your leads and ops stay in sync.
+            WayFind is a small senior team in Islamabad: websites, mobile apps,
+            AI assistants, CRM, SEO, and paid ads, wired up so your leads and
+            ops stay in sync.
           </motion.p>
 
           <motion.div
@@ -237,7 +267,10 @@ export function HomeView() {
             transition={{ delay: 0.35 }}
             className="mt-8 flex flex-col gap-3 sm:flex-row"
           >
-            <Button asChild className="rounded-full px-7 shadow-glow hover:shadow-glow-lg transition-all">
+            <Button
+              asChild
+              className="rounded-full px-7 shadow-glow hover:shadow-glow-lg transition-all"
+            >
               <Link href="/contact">Start a Project →</Link>
             </Button>
             <Button asChild variant="secondary" className="rounded-full px-7">
@@ -263,26 +296,32 @@ export function HomeView() {
                 <div className="w-full max-w-3xl rounded-2xl border border-line bg-canvas p-4 text-left shadow-elevated">
                   <div className="flex items-center justify-between text-xs text-muted">
                     <span>wayfind / growth-engine</span>
-                    <span className="rounded-full border border-line px-2 py-1 text-[10px] font-semibold">Live</span>
+                    <span className="rounded-full border border-line px-2 py-1 text-[10px] font-semibold">
+                      Live
+                    </span>
                   </div>
                   <div className="mt-4 grid gap-3 sm:grid-cols-2">
                     <div className="rounded-xl border border-line bg-surface p-3">
-                      <div className="text-xs font-semibold text-muted">Pipeline</div>
+                      <div className="text-xs font-semibold text-muted">
+                        Pipeline
+                      </div>
                       <div className="mt-2 text-2xl font-semibold">+38%</div>
                       <div className="text-xs text-muted">qualified leads</div>
                     </div>
                     <div className="rounded-xl border border-line bg-surface p-3">
-                      <div className="text-xs font-semibold text-muted">AI deflection</div>
+                      <div className="text-xs font-semibold text-muted">
+                        AI deflection
+                      </div>
                       <div className="mt-2 text-2xl font-semibold">72%</div>
-                      <div className="text-xs text-muted">inquiries automated</div>
+                      <div className="text-xs text-muted">
+                        inquiries automated
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
-
-
         </div>
       </section>
 
@@ -293,7 +332,10 @@ export function HomeView() {
         <div className="mt-4 overflow-hidden">
           <div className="group flex w-max animate-marquee hover:[animation-play-state:paused]">
             {[0, 1].map((dup) => (
-              <div key={dup} className="flex items-center gap-6 px-6 text-sm font-semibold text-ink/35">
+              <div
+                key={dup}
+                className="flex items-center gap-6 px-6 text-sm font-semibold text-ink/35"
+              >
                 {trustItems.map((t) => (
                   <span key={`${dup}-${t}`} className="flex items-center gap-6">
                     <span>{t}</span>
@@ -306,23 +348,34 @@ export function HomeView() {
         </div>
       </section>
 
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, filter: "blur(10px)", y: 40 }}
         whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="mx-auto max-w-6xl px-4 py-20 sm:px-6"
       >
-        <div className="text-xs font-semibold tracking-wide text-muted uppercase">What we build</div>
+        <div className="text-xs font-semibold tracking-wide text-muted uppercase">
+          What we build
+        </div>
         <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight sm:text-5xl">
           Everything you need to show up online and convert traffic.
         </h2>
-        <p className="mt-3 max-w-2xl text-muted text-lg">One team for build, launch, and ongoing growth. Clear scope and timelines.</p>
+        <p className="mt-3 max-w-2xl text-muted text-lg">
+          One team for build, launch, and ongoing growth. Clear scope and
+          timelines.
+        </p>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {SERVICES.map((s, idx) => {
-            const Icon = ((Icons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[s.icon] ??
-              Icons.Sparkles) as React.ComponentType<{ className?: string }>;
+            const Icon = ((
+              Icons as unknown as Record<
+                string,
+                React.ComponentType<{ className?: string }>
+              >
+            )[s.icon] ?? Icons.Sparkles) as React.ComponentType<{
+              className?: string;
+            }>;
             return (
               <motion.div
                 key={s.slug}
@@ -334,8 +387,13 @@ export function HomeView() {
                 <Card className="h-full p-6 shadow-elevated transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
                   <Icon className="h-5 w-5 text-accent" />
                   <div className="mt-4 text-base font-semibold">{s.title}</div>
-                  <p className="mt-2 text-sm text-muted">{s.shortDescription}</p>
-                  <Link className="mt-4 inline-flex text-sm font-semibold hover:underline" href={s.path}>
+                  <p className="mt-2 text-sm text-muted">
+                    {s.shortDescription}
+                  </p>
+                  <Link
+                    className="mt-4 inline-flex text-sm font-semibold hover:underline"
+                    href={s.path}
+                  >
                     Learn More →
                   </Link>
                 </Card>
@@ -353,7 +411,10 @@ export function HomeView() {
             { v: c3, label: "Industries Served", suffix: "+" },
             { v: c4, label: "AI Systems Deployed", suffix: "+" },
           ].map((s) => (
-            <div key={s.label} className="rounded-3xl border border-line bg-canvas p-6 text-center shadow-elevated">
+            <div
+              key={s.label}
+              className="rounded-3xl border border-line bg-canvas p-6 text-center shadow-elevated"
+            >
               <div className="text-4xl font-semibold tracking-tight">
                 {s.v}
                 {s.suffix}
@@ -371,8 +432,12 @@ export function HomeView() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="mx-auto max-w-6xl px-4 py-20 sm:px-6"
       >
-        <div className="text-xs font-semibold tracking-wide text-muted uppercase">Our Process</div>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">From idea to live in weeks, not months.</h2>
+        <div className="text-xs font-semibold tracking-wide text-muted uppercase">
+          Our Process
+        </div>
+        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
+          From idea to live in weeks, not months.
+        </h2>
         <div className="mt-12 grid gap-6 lg:grid-cols-4">
           {processSteps.map((p, i) => (
             <motion.div
@@ -393,8 +458,12 @@ export function HomeView() {
 
       <section className="border-y border-line bg-surface py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="text-xs font-semibold tracking-wide text-muted">OUR WORK</div>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Built for real Pakistani businesses.</h2>
+          <div className="text-xs font-semibold tracking-wide text-muted">
+            OUR WORK
+          </div>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+            Built for real Pakistani businesses.
+          </h2>
           <div className="mt-10">
             <WorkDragRow />
           </div>
@@ -408,11 +477,20 @@ export function HomeView() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="mx-auto max-w-6xl px-4 py-20 sm:px-6"
       >
-        <div className="text-xs font-semibold tracking-wide text-muted uppercase">Industries</div>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">We learn your business first, then we ship.</h2>
+        <div className="text-xs font-semibold tracking-wide text-muted uppercase">
+          Industries
+        </div>
+        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
+          We learn your business first, then we ship.
+        </h2>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {INDUSTRIES.map((ind) => (
-            <IndustryVideoTile key={ind.slug} slug={ind.slug} name={ind.name} description={ind.description} />
+            <IndustryVideoTile
+              key={ind.slug}
+              slug={ind.slug}
+              name={ind.name}
+              description={ind.description}
+            />
           ))}
         </div>
       </motion.section>
@@ -426,10 +504,15 @@ export function HomeView() {
       >
         <div className="mx-auto grid max-w-6xl items-start gap-10 px-4 sm:px-6 lg:grid-cols-2">
           <div>
-            <div className="text-xs font-semibold tracking-wide text-muted uppercase">AI In Action</div>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">This is the AI we build into your business.</h2>
+            <div className="text-xs font-semibold tracking-wide text-muted uppercase">
+              AI In Action
+            </div>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
+              This is the AI we build into your business.
+            </h2>
             <p className="mt-6 text-lg text-muted">
-              A production-grade assistant that answers fast, stays on-brand, and routes high-intent leads to your team.
+              A production-grade assistant that answers fast, stays on-brand,
+              and routes high-intent leads to your team.
             </p>
             <ul className="mt-8 space-y-4 text-sm text-muted">
               <li className="flex items-center gap-3">
@@ -463,19 +546,31 @@ export function HomeView() {
       >
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
-            <div className="text-xs font-semibold tracking-wide text-muted uppercase">Our Studio</div>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">Built in Islamabad. Built for Scale.</h2>
+            <div className="text-xs font-semibold tracking-wide text-muted uppercase">
+              Our Studio
+            </div>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
+              Built in Islamabad. Built for Scale.
+            </h2>
             <p className="mt-6 text-lg text-muted">
-              We operate out of a modern workspace in the heart of Pakistan's tech hub. Our senior team is dedicated to shipping production-grade systems with international standards.
+              We operate out of a modern workspace in the heart of
+              Pakistan&rsquo;s tech hub. Our senior team is dedicated to
+              shipping production-grade systems with international standards.
             </p>
             <div className="mt-8 flex items-center gap-4">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="h-10 w-10 rounded-full border-2 border-surface bg-muted" />
+                  <div
+                    key={i}
+                    className="h-10 w-10 rounded-full border-2 border-surface bg-muted"
+                  />
                 ))}
               </div>
               <div className="text-sm text-muted">
-                <span className="font-semibold text-ink">12 senior specialists</span> ready to deploy.
+                <span className="font-semibold text-ink">
+                  12 senior specialists
+                </span>{" "}
+                ready to deploy.
               </div>
             </div>
           </div>
@@ -497,8 +592,12 @@ export function HomeView() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="mx-auto max-w-6xl px-4 py-20 sm:px-6"
       >
-        <div className="text-xs font-semibold tracking-wide text-muted uppercase">Client Stories</div>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">Businesses that trusted WayFind to lead the way.</h2>
+        <div className="text-xs font-semibold tracking-wide text-muted uppercase">
+          Client Stories
+        </div>
+        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
+          Businesses that trusted WayFind to lead the way.
+        </h2>
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {[
             {
@@ -510,15 +609,20 @@ export function HomeView() {
             {
               name: "Kamran Raza",
               co: "Elite Fitness Hub",
-              quote: "AI bot handles 90% of inquiries. We saved 2 full staff costs in Month 1 alone.",
+              quote:
+                "AI bot handles 90% of inquiries. We saved 2 full staff costs in Month 1 alone.",
             },
             {
               name: "Ali Khan",
               co: "Dastarkhan Restaurant",
-              quote: "Ranking #1 on Google. 12× ROI in the first quarter. WayFind delivered beyond expectations.",
+              quote:
+                "Ranking #1 on Google. 12× ROI in the first quarter. WayFind delivered beyond expectations.",
             },
           ].map((t) => (
-            <Card key={t.name} className="p-8 shadow-elevated hover:shadow-glow transition-all">
+            <Card
+              key={t.name}
+              className="p-8 shadow-elevated hover:shadow-glow transition-all"
+            >
               <div className="flex gap-1 text-amber-500">
                 {[1, 2, 3, 4, 5].map((s) => (
                   <Icons.Star key={s} className="h-4 w-4 fill-current" />
@@ -529,7 +633,9 @@ export function HomeView() {
                 <div className="h-10 w-10 rounded-full bg-surface-2 border border-line" />
                 <div>
                   <div className="text-sm font-semibold">{t.name}</div>
-                  <div className="text-xs text-muted uppercase tracking-wider">{t.co}</div>
+                  <div className="text-xs text-muted uppercase tracking-wider">
+                    {t.co}
+                  </div>
                 </div>
               </div>
             </Card>
@@ -539,8 +645,12 @@ export function HomeView() {
 
       <section className="border-y border-line bg-surface py-16">
         <div className="mx-auto max-w-[700px] px-4 sm:px-6">
-          <div className="text-xs font-semibold tracking-wide text-muted">FAQ</div>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight">Everything you want to know about WayFind.</h2>
+          <div className="text-xs font-semibold tracking-wide text-muted">
+            FAQ
+          </div>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight">
+            Everything you want to know about WayFind.
+          </h2>
           <Accordion type="single" collapsible className="mt-8">
             {faqs.map((f, i) => (
               <AccordionItem key={f.q} value={`item-${i}`}>
@@ -555,16 +665,29 @@ export function HomeView() {
       <section className="relative overflow-hidden bg-[#05070a] py-20 text-white">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.25),transparent_45%),radial-gradient(circle_at_80%_60%,rgba(99,102,241,0.22),transparent_45%)]" />
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-5xl">Ready to plan your next launch?</h2>
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-5xl">
+            Ready to plan your next launch?
+          </h2>
           <p className="mt-4 text-white/70">
             Book a free 30-minute strategy session. No pressure, no commitment.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <Button asChild className="rounded-full bg-white text-black hover:bg-white/90">
+            <Button
+              asChild
+              className="rounded-full bg-white text-black hover:bg-white/90"
+            >
               <Link href="/contact">Book Free Consultation →</Link>
             </Button>
-            <Button asChild variant="secondary" className="rounded-full border-white/20 bg-transparent text-white hover:bg-white/10">
-              <a href={company.waLink} target="_blank" rel="noopener noreferrer">
+            <Button
+              asChild
+              variant="secondary"
+              className="rounded-full border-white/20 bg-transparent text-white hover:bg-white/10"
+            >
+              <a
+                href={company.waLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 WhatsApp Us Now
               </a>
             </Button>
