@@ -118,12 +118,7 @@ function useCounter(target: number, enabled: boolean) {
 
 const WorkDragRow = React.memo(function WorkDragRow() {
   const mx = useMotionValue(0);
-  const my = useMotionValue(0);
   const sx = useSpring(useTransform(mx, [-300, 300], [18, -18]), {
-    stiffness: 120,
-    damping: 20,
-  });
-  const sy = useSpring(useTransform(my, [-300, 300], [12, -12]), {
     stiffness: 120,
     damping: 20,
   });
@@ -164,6 +159,10 @@ export function HomeView() {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const sx = useSpring(useTransform(mx, [-300, 300], [18, -18]), {
+    stiffness: 120,
+    damping: 20,
+  });
+  const sy = useSpring(useTransform(my, [-300, 300], [12, -12]), {
     stiffness: 120,
     damping: 20,
   });
